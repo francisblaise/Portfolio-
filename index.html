@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Francis Agbo — Data & Crypto Analyst</title>
+  <meta name="description" content="Data Analyst at the intersection of blockchain, finance, and intelligence. SQL, Python, Power BI, Tableau." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0C0B09;
+      --surface:   #131210;
+      --surface2:  #1A1916;
+      --gold:      #C9A96E;
+      --gold-dim:  #8C7048;
+      --text:      #E8E4DC;
+      --muted:     #7A756E;
+      --line:      rgba(201,169,110,0.15);
+      --font-display: 'Fraunces', Georgia, serif;
+      --font-body:    'Syne', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* ─── NOISE OVERLAY ─── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.4;
+    }
+
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 2px; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.25rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid transparent;
+      transition: all 0.4s ease;
+    }
+    nav.scrolled {
+      background: rgba(12,11,9,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom-color: var(--line);
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.25s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 8rem 3rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 0%, transparent 100%);
+    }
+    .hero-glow {
+      position: absolute;
+      top: -10%;
+      right: -5%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(ellipse, rgba(201,169,110,0.08) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-content {
+      position: relative;
+      max-width: 780px;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--gold);
+    }
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 600;
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 1.25rem;
+    }
+    h1 em {
+      font-style: italic;
+      color: var(--gold);
+      font-weight: 300;
+    }
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+    .hero-sub strong { color: var(--text); font-weight: 600; }
+    .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      border-radius: 3px;
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--bg);
+    }
+    .btn-primary:hover {
+      background: #D4B87E;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(201,169,110,0.25);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid rgba(232,228,220,0.2);
+    }
+    .btn-outline:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: translateY(-2px);
+    }
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--line);
+    }
+    .stat-item { }
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 0.25rem;
+    }
+
+    /* ─── SECTIONS ─── */
+    section { padding: 6rem 3rem; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--gold);
+    }
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+    h2 em { font-style: italic; color: var(--gold); font-weight: 300; }
+    .section-desc {
+      color: var(--muted);
+      max-width: 500px;
+      margin-bottom: 3.5rem;
+      font-size: 0.95rem;
+    }
+
+    /* ─── ABOUT ─── */
+    #about { background: var(--surface); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .about-portrait {
+      position: relative;
+    }
+    .portrait-box {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--surface2);
+      border: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+    .portrait-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .portrait-initials {
+      font-family: var(--font-display);
+      font-size: 4rem;
+      font-weight: 300;
+      color: var(--gold-dim);
+      letter-spacing: -0.05em;
+    }
+    .portrait-accent {
+      position: absolute;
+      bottom: -12px;
+      right: -12px;
+      width: 80px;
+      height: 80px;
+      border: 2px solid var(--gold);
+      pointer-events: none;
+    }
+    .about-text p {
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+      font-size: 0.97rem;
+      line-height: 1.8;
+    }
+    .about-text p strong { color: var(--text); font-weight: 600; }
+    .about-certs {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .cert-tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.75rem;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      border-radius: 2px;
+      transition: all 0.2s;
+    }
+    .cert-tag:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ─── SKILLS ─── */
+    #skills { }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5px;
+      border: 1px solid var(--line);
+    }
+    .skill-card {
+      padding: 1.75rem;
+      background: var(--surface);
+      border: none;
+      transition: background 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .skill-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gold);
+      transition: width 0.35s ease;
+    }
+    .skill-card:hover { background: var(--surface2); }
+    .skill-card:hover::after { width: 100%; }
+    .skill-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+    .skill-cat {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+    .skill-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+    .skill-card p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ─── EXPERIENCE ─── */
+    #experience { background: var(--surface); }
+    .exp-list { display: flex; flex-direction: column; gap: 0; }
+    .exp-item {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 2rem;
+      padding: 2.25rem 0;
+      border-bottom: 1px solid var(--line);
+      align-items: start;
+    }
+    .exp-item:first-child { border-top: 1px solid var(--line); }
+    .exp-meta { }
+    .exp-date {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.35rem;
+    }
+    .exp-company {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .exp-badge {
+      display: inline-block;
+      margin-top: 0.5rem;
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.2rem 0.5rem;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      border-radius: 2px;
+    }
+    .exp-content h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+    }
+    .exp-content ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .exp-content ul li {
+      font-size: 0.88rem;
+      color: var(--muted);
+      padding-left: 1.25rem;
+      position: relative;
+      line-height: 1.65;
+    }
+    .exp-content ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--gold-dim);
+      font-size: 0.75rem;
+      top: 0.1em;
+    }
+
+    /* ─── PROJECTS ─── */
+    #projects { }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5px;
+    }
+    .project-card {
+      background: var(--surface);
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .project-card:hover { background: var(--surface2); }
+    .project-card:hover::before { transform: scaleX(1); }
+    .project-num {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      color: var(--gold-dim);
+      font-weight: 600;
+      letter-spacing: 0.15em;
+    }
+    .project-tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.2rem 0.6rem;
+      background: rgba(201,169,110,0.1);
+      color: var(--gold);
+      border-radius: 2px;
+      width: fit-content;
+    }
+    .project-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+    }
+    .project-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.7;
+      flex: 1;
+    }
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      text-decoration: none;
+      margin-top: 0.5rem;
+      transition: color 0.2s;
+    }
+    .project-link:hover { color: var(--gold); }
+    .project-link svg { transition: transform 0.2s; }
+    .project-link:hover svg { transform: translateX(3px); }
+
+    /* ─── RESEARCH ─── */
+    #research { background: var(--surface); }
+    .research-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-bottom: 3rem;
+      align-items: end;
+    }
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1px;
+      border: 1px solid var(--line);
+    }
+    .research-card {
+      padding: 1.75rem;
+      background: var(--bg);
+      transition: background 0.25s;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .research-card:hover { background: var(--surface2); }
+    .research-month {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .research-card h4 {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+    }
+    .research-card p {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.6;
+      flex: 1;
+    }
+    .research-badge {
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0.2rem 0.5rem;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      border-radius: 2px;
+      width: fit-content;
+    }
+
+    /* ─── CONTACT ─── */
+    #contact { }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .contact-left h2 {
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+    }
+    .contact-tagline {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-top: 1rem;
+      line-height: 1.7;
+      max-width: 360px;
+    }
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 2.5rem;
+    }
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      transition: all 0.25s;
+    }
+    .contact-link:hover {
+      border-color: var(--gold);
+      background: rgba(201,169,110,0.04);
+    }
+    .contact-link-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--surface2);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .contact-link-text { flex: 1; }
+    .contact-link-label {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .contact-link-value {
+      font-size: 0.88rem;
+      color: var(--text);
+      font-weight: 500;
+    }
+    .contact-link-arrow { color: var(--gold-dim); font-size: 0.9rem; }
+
+    /* ─── CONTACT FORM ─── */
+    .contact-form {
+      background: var(--surface);
+      padding: 2.5rem;
+      border: 1px solid var(--line);
+    }
+    .form-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.35rem;
+    }
+    .form-subtitle {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+    .form-group:last-of-type { margin-bottom: 1.5rem; }
+    label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    input, textarea, select {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 2px;
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      padding: 0.75rem 1rem;
+      transition: border-color 0.25s;
+      outline: none;
+      width: 100%;
+    }
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--gold);
+    }
+    textarea { resize: vertical; min-height: 120px; }
+    select option { background: var(--bg); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 2rem 3rem;
+      border-top: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      color: var(--muted);
+      text-decoration: none;
+    }
+    .footer-logo span { color: var(--gold); }
+    .footer-copy {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .footer-links a {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* ─── ANIMATIONS ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ─── MOBILE ─── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      section { padding: 4rem 1.5rem; }
+      #hero { padding: 6rem 1.5rem 4rem; }
+      .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .portrait-box { aspect-ratio: 1; max-width: 240px; }
+      .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .research-intro { grid-template-columns: 1fr; gap: 1rem; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="#hero" class="nav-logo">FA<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-grid-bg"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Data &amp; Crypto Analyst — Lagos, Nigeria</div>
+      <h1>Turning <em>raw data</em> into clear decisions.</h1>
+      <p class="hero-sub">
+        I work at the intersection of <strong>blockchain analytics</strong>, <strong>financial modeling</strong>, and <strong>data intelligence</strong> — helping founders, protocols, and institutions understand what the numbers actually mean.
+      </p>
+      <div class="btn-group">
+        <a href="#projects" class="btn btn-primary">View My Work →</a>
+        <a href="#contact" class="btn btn-outline">Work With Me</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">5+</div>
+          <div class="stat-label">Projects Shipped</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">3+</div>
+          <div class="stat-label">Years in Crypto</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">10+</div>
+          <div class="stat-label">Research Reports</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">FMVA</div>
+          <div class="stat-label">Certified Analyst</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="about-portrait reveal">
+          <div class="portrait-box">
+            <span class="portrait-initials">FA</span>
+          </div>
+          <div class="portrait-accent"></div>
+        </div>
+        <div class="about-text">
+          <div class="section-label">About</div>
+          <h2>Data native,<br><em>crypto fluent.</em></h2>
+          <p>
+            I'm Francis Agbo — a Data Analyst with a background in <strong>Mathematics (B.Tech, FUTO)</strong> and hands-on experience spanning DeFi research, financial modeling, and on-chain intelligence. I currently work as a <strong>Crypto Content & Research Data Analyst at DeFi Scope</strong>, where I translate complex blockchain data into reports that actually guide strategy.
+          </p>
+          <p>
+            My work lives at the intersection of two worlds most people keep separate: the technical rigor of data analysis and the fast-moving dynamics of crypto markets. I've built dashboards, written investment theses on DeFi protocols, and turned raw on-chain signals into narratives that operators and founders can act on.
+          </p>
+          <p>
+            I'm Africa-based, globally minded, and building toward a future where emerging markets have their own world-class financial intelligence infrastructure.
+          </p>
+          <div class="about-certs reveal reveal-delay-1">
+            <span class="cert-tag">FMVA — CFI</span>
+            <span class="cert-tag">Data Analyst Cert</span>
+            <span class="cert-tag">B.Tech Mathematics</span>
+            <span class="cert-tag">Aspire Leaders Program</span>
+            <span class="cert-tag">Standard Bank Banking Sim</span>
+            <span class="cert-tag">Tata Data Viz Sim</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-inner">
+      <div class="section-label">Capabilities</div>
+      <h2>What I work <em>with.</em></h2>
+      <p class="section-desc">A full-stack data toolkit — from raw SQL to blockchain dashboards to financial models.</p>
+      <div class="skills-grid reveal">
+        <div class="skill-card">
+          <span class="skill-icon">⛓</span>
+          <div class="skill-cat">Blockchain & DeFi</div>
+          <h3>On-Chain Analytics</h3>
+          <p>Protocol analysis, DeFi market structure, on-chain data interpretation, ecosystem intelligence, and blockchain-native research reporting.</p>
+        </div>
+        <div class="skill-card">
+          <span class="skill-icon">🗄</span>
+          <div class="skill-cat">Data & Querying</div>
+          <h3>SQL & Python</h3>
+          <p>MySQL, PostgreSQL, MS SQL Server — complex queries, ETL pipelines, and Python (Pandas, NumPy) for analysis and automation.</p>
+        </div>
+        <div class="skill-card">
+          <span class="skill-icon">📊</span>
+          <div class="skill-cat">Visualization & BI</div>
+          <h3>Power BI & Tableau</h3>
+          <p>Interactive dashboards, KPI tracking, DAX modeling, stakeholder reports, and data storytelling that drives decisions.</p>
+        </div>
+        <div class="skill-card">
+          <span class="skill-icon">💹</span>
+          <div class="skill-cat">Financial Modeling</div>
+          <h3>Financial Analysis</h3>
+          <p>Ratio analysis, forecasting models, investment research, ESG analysis, and equity/debt evaluation — FMVA certified.</p>
+        </div>
+        <div class="skill-card">
+          <span class="skill-icon">📝</span>
+          <div class="skill-cat">Research & Writing</div>
+          <h3>Research Reports</h3>
+          <p>Long-form analytical reports, investment theses, market intelligence briefings, and data-driven content for crypto-native audiences.</p>
+        </div>
+        <div class="skill-card">
+          <span class="skill-icon">🔬</span>
+          <div class="skill-cat">Analysis Methods</div>
+          <h3>EDA & Statistics</h3>
+          <p>Exploratory data analysis, statistical modeling, clustering, trend identification, and R (tidyverse, dplyr) for data science workflows.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-inner">
+      <div class="section-label">Experience</div>
+      <h2>Where I've <em>worked.</em></h2>
+      <p class="section-desc">A track record across crypto research, financial analysis, and data analytics.</p>
+      <div class="exp-list">
+
+        <div class="exp-item reveal">
+          <div class="exp-meta">
+            <div class="exp-date">Oct 2025 — Present</div>
+            <div class="exp-company">DeFi Scope</div>
+            <span class="exp-badge">Remote</span>
+          </div>
+          <div class="exp-content">
+            <h3>Crypto Content & Research Data Analyst</h3>
+            <ul>
+              <li>Analyze on-chain and market data across multiple blockchain protocols to identify emerging trends and support weekly research publications</li>
+              <li>Transform complex datasets into long-form analytical reports used by leadership to guide content and research strategy</li>
+              <li>Develop data-driven social media insights that improve content performance and audience engagement</li>
+              <li>Collaborate cross-functionally with senior researchers to translate technical findings into accessible narratives</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item reveal">
+          <div class="exp-meta">
+            <div class="exp-date">Jun 2025</div>
+            <div class="exp-company">Standard Bank</div>
+            <span class="exp-badge">Simulation</span>
+          </div>
+          <div class="exp-content">
+            <h3>Business & Commercial Banking Analyst</h3>
+            <ul>
+              <li>Performed financial statement analysis including ratio analysis (debt-to-equity, interest coverage)</li>
+              <li>Built financial models and forecasts to support strategic planning</li>
+              <li>Developed investment recommendations using data analysis and market research</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item reveal">
+          <div class="exp-meta">
+            <div class="exp-date">May 2025</div>
+            <div class="exp-company">Tata Group</div>
+            <span class="exp-badge">Simulation</span>
+          </div>
+          <div class="exp-content">
+            <h3>Data Visualization Analyst</h3>
+            <ul>
+              <li>Created dashboards and visual reports to support executive decision-making</li>
+              <li>Translated business requirements into data visualization solutions</li>
+              <li>Prepared stakeholder-focused analytical presentations</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item reveal">
+          <div class="exp-meta">
+            <div class="exp-date">Mar 2024 — Sep 2024</div>
+            <div class="exp-company">Abisojem Consult</div>
+            <span class="exp-badge">Lagos</span>
+          </div>
+          <div class="exp-content">
+            <h3>Data Analyst Intern</h3>
+            <ul>
+              <li>Cleaned and transformed raw business datasets to improve accuracy and reliability for reporting</li>
+              <li>Built interactive Excel dashboards and automated reports to track key business metrics</li>
+              <li>Performed advanced Excel analysis (pivot tables, data modeling) to identify trends and insights</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item reveal">
+          <div class="exp-meta">
+            <div class="exp-date">Oct 2022 — Feb 2023</div>
+            <div class="exp-company">Yellow Card</div>
+            <span class="exp-badge">Lagos</span>
+          </div>
+          <div class="exp-content">
+            <h3>Brand Ambassador</h3>
+            <ul>
+              <li>Onboarded users and explained crypto products to new customers</li>
+              <li>Supported customer engagement and community growth initiatives</li>
+              <li>Organized events and contributed to user acquisition strategies</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-inner">
+      <div class="section-label">Portfolio</div>
+      <h2>Things I've <em>built.</em></h2>
+      <p class="section-desc">Data projects spanning financial analytics, operations intelligence, and business insights.</p>
+      <div class="projects-grid">
+
+        <div class="project-card reveal">
+          <div class="project-num">01</div>
+          <span class="project-tag">Power BI</span>
+          <h3>Maven Toy Shop — Sales Dashboard</h3>
+          <p>Interactive Power BI dashboard analyzing revenue trends, KPI performance, and regional sales patterns across a multi-location toy retail chain.</p>
+          <a href="https://github.com/francisblaise/Maven-Toy-Shop-Analysis" target="_blank" class="project-link">
+            View on GitHub
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
+        <div class="project-card reveal reveal-delay-1">
+          <div class="project-num">02</div>
+          <span class="project-tag">SQL</span>
+          <h3>E-Commerce Customer Segmentation</h3>
+          <p>SQL-driven customer analysis using clustering techniques to identify distinct customer groups, behaviors, and revenue contribution across an online store.</p>
+          <a href="https://github.com/francisblaise/CUSTOMER-AND-SALES-ANALYSIS-FOR-AN-E-COMMERCE-STORE" target="_blank" class="project-link">
+            View on GitHub
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
+        <div class="project-card reveal reveal-delay-2">
+          <div class="project-num">03</div>
+          <span class="project-tag">Excel</span>
+          <h3>Ride-Sharing Performance Optimization</h3>
+          <p>Excel-based analysis optimizing ride-sharing efficiency and cost through data-driven insights into driver performance, route patterns, and customer experience metrics.</p>
+          <a href="https://github.com/francisblaise/Optimizing-Ride-Sharing-Performance-Customer-Experience-with-Data-Driven-Insights" target="_blank" class="project-link">
+            View on GitHub
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
+        <div class="project-card reveal reveal-delay-3">
+          <div class="project-num">04</div>
+          <span class="project-tag">Financial Analysis</span>
+          <h3>ESG Financial Analysis</h3>
+          <p>Comprehensive ESG-focused financial analysis evaluating environmental, social, and governance factors alongside traditional financial metrics for investment assessment.</p>
+          <a href="https://github.com/francisblaise/ESG-Financial-Analysis-" target="_blank" class="project-link">
+            View on GitHub
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
+        <div class="project-card reveal">
+          <div class="project-num">05</div>
+          <span class="project-tag">Insurance Analytics</span>
+          <h3>MM Insurance Claims Analysis</h3>
+          <p>End-to-end analysis of insurance claims data for MM Insurance Company — identifying patterns, risk concentrations, and operational insights to support underwriting decisions.</p>
+          <a href="https://github.com/francisblaise/AN-ANALYSIS-ON-INSURANCE-CLAIMS-FOR-MM-INSURANCE-COMPANY-" target="_blank" class="project-link">
+            View on GitHub
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
+        <div class="project-card reveal reveal-delay-1">
+          <div class="project-num">06</div>
+          <span class="project-tag">SQL / Database</span>
+          <h3>Student Management System DB</h3>
+          <p>Relational database design and implementation for a student management system — covering schema design, query optimization, and data integrity constraints.</p>
+          <a href="https://github.com/francisblaise/Student-Management-System-Database-" target="_blank" class="project-link">
+            View on GitHub
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
+      </div>
+      <div style="margin-top: 2rem; text-align: center;">
+        <a href="https://github.com/francisblaise" target="_blank" class="btn btn-outline">View All Projects on GitHub →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH -->
+  <section id="research">
+    <div class="section-inner">
+      <div class="research-intro">
+        <div>
+          <div class="section-label">Research</div>
+          <h2>Published <em>reports.</em></h2>
+        </div>
+        <p style="color: var(--muted); font-size: 0.92rem; line-height: 1.75;">
+          Ongoing research published at DeFi Scope — covering protocol analysis, emerging L2 ecosystems, DeFi product design, and investment theses. All reports built from on-chain data and primary market analysis.
+        </p>
+      </div>
+      <div class="research-grid reveal">
+
+        <div class="research-card">
+          <div class="research-month">September 2025</div>
+          <h4>Prediction Markets</h4>
+          <p>A deep-dive into the mechanics, growth trajectory, and market structure of decentralized prediction markets and their role in price discovery.</p>
+          <span class="research-badge">DeFi Scope</span>
+        </div>
+
+        <div class="research-card">
+          <div class="research-month">October 2025</div>
+          <h4>Linea: The Ethereum Equivalent L2 Network</h4>
+          <p>Technical and market analysis of Linea's architecture, EVM equivalence design, ecosystem development, and positioning within the L2 landscape.</p>
+          <span class="research-badge">DeFi Scope</span>
+        </div>
+
+        <div class="research-card">
+          <div class="research-month">October 2025</div>
+          <h4>Crypto Cards & Neobanks</h4>
+          <p>Market landscape analysis of crypto-native banking products, card issuers, and neobank models bridging DeFi and traditional financial rails.</p>
+          <span class="research-badge">DeFi Scope</span>
+        </div>
+
+        <div class="research-card">
+          <div class="research-month">October 2025</div>
+          <h4>Investment Thesis: Aave Acquiring Stable</h4>
+          <p>Original investment thesis analyzing the strategic rationale, risk profile, and value creation potential of Aave's stablecoin acquisition strategy.</p>
+          <span class="research-badge">DeFi Scope</span>
+        </div>
+
+        <div class="research-card" style="background: var(--surface2);">
+          <div class="research-month">Ongoing</div>
+          <h4>Weekly Crypto Intelligence Briefings</h4>
+          <p>Regular market intelligence posts covering protocol developments, on-chain signals, and macro-crypto trends — published on LinkedIn.</p>
+          <a href="https://www.linkedin.com/in/francisblaise/" target="_blank" style="font-size: 0.75rem; color: var(--gold); text-decoration: none; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 0.5rem; display: inline-block;">Follow on LinkedIn →</a>
+        </div>
+
+        <div class="research-card" style="background: var(--surface2); display: flex; align-items: center; justify-content: center; min-height: 160px;">
+          <div style="text-align: center;">
+            <div style="font-family: var(--font-display); font-size: 2.5rem; color: var(--gold-dim); font-weight: 300; font-style: italic;">+more</div>
+            <div style="font-size: 0.75rem; color: var(--muted); margin-top: 0.25rem;">Reports added monthly</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-inner">
+      <div class="contact-grid">
+        <div class="contact-left reveal">
+          <div class="section-label">Let's Talk</div>
+          <h2>Ready to work <em>together?</em></h2>
+          <p class="contact-tagline">
+            Whether you need a data analyst, a crypto researcher, a dashboard built, or a second brain on your next report — I'm open to conversations.
+          </p>
+          <div class="contact-links">
+            <a href="mailto:francisblaise3@gmail.com" class="contact-link">
+              <div class="contact-link-icon">✉</div>
+              <div class="contact-link-text">
+                <div class="contact-link-label">Email</div>
+                <div class="contact-link-value">francisblaise3@gmail.com</div>
+              </div>
+              <span class="contact-link-arrow">→</span>
+            </a>
+            <a href="https://www.linkedin.com/in/francisblaise/" target="_blank" class="contact-link">
+              <div class="contact-link-icon">in</div>
+              <div class="contact-link-text">
+                <div class="contact-link-label">LinkedIn</div>
+                <div class="contact-link-value">@francisblaise</div>
+              </div>
+              <span class="contact-link-arrow">→</span>
+            </a>
+            <a href="https://github.com/francisblaise" target="_blank" class="contact-link">
+              <div class="contact-link-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--muted)"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              </div>
+              <div class="contact-link-text">
+                <div class="contact-link-label">GitHub</div>
+                <div class="contact-link-value">@francisblaise</div>
+              </div>
+              <span class="contact-link-arrow">→</span>
+            </a>
+            <a href="https://x.com/drealblaise" target="_blank" class="contact-link">
+              <div class="contact-link-icon">𝕏</div>
+              <div class="contact-link-text">
+                <div class="contact-link-label">X / Twitter</div>
+                <div class="contact-link-value">@drealblaise</div>
+              </div>
+              <span class="contact-link-arrow">→</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-form reveal reveal-delay-2">
+          <div class="form-title">Request a Service</div>
+          <div class="form-subtitle">Tell me what you need — I'll get back within 24 hours.</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" placeholder="John" />
+            </div>
+            <div class="form-group">
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" placeholder="Doe" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="john@company.com" />
+          </div>
+          <div class="form-group">
+            <label for="service">Service Needed</label>
+            <select id="service">
+              <option value="">Select a service...</option>
+              <option>Dashboard / BI Report (Power BI / Tableau)</option>
+              <option>Data Analysis & Insights</option>
+              <option>Crypto / DeFi Research Report</option>
+              <option>Financial Modeling</option>
+              <option>On-Chain Data Analysis</option>
+              <option>SQL Database & Queries</option>
+              <option>Other / Let's Discuss</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Tell Me More</label>
+            <textarea id="message" placeholder="Brief description of your project, timeline, and any relevant context..."></textarea>
+          </div>
+          <button type="button" class="btn btn-primary" style="width: 100%; justify-content: center;" onclick="handleFormSubmit()">
+            Send Message →
+          </button>
+          <p id="form-msg" style="display:none; margin-top: 1rem; font-size: 0.82rem; color: var(--gold); text-align: center;"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="#hero" class="footer-logo">Francis Agbo<span>.</span></a>
+    <p class="footer-copy">© 2025 Francis Agbo. Data Analyst & Crypto Researcher.</p>
+    <div class="footer-links">
+      <a href="https://github.com/francisblaise" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/francisblaise/" target="_blank">LinkedIn</a>
+      <a href="mailto:francisblaise3@gmail.com">Email</a>
+    </div>
+  </footer>
+
+  <script>
+    // Nav scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => observer.observe(el));
+
+    // Hero content immediate reveal
+    document.querySelector('.hero-content').style.opacity = '0';
+    document.querySelector('.hero-content').style.transform = 'translateY(20px)';
+    setTimeout(() => {
+      document.querySelector('.hero-content').style.transition = 'opacity 0.9s ease, transform 0.9s ease';
+      document.querySelector('.hero-content').style.opacity = '1';
+      document.querySelector('.hero-content').style.transform = 'none';
+    }, 100);
+
+    // Contact form
+    function handleFormSubmit() {
+      const fname = document.getElementById('fname').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const service = document.getElementById('service').value;
+      const message = document.getElementById('message').value.trim();
+      const msg = document.getElementById('form-msg');
+
+      if (!fname || !email || !service || !message) {
+        msg.style.color = '#c97070';
+        msg.textContent = 'Please fill in all required fields.';
+        msg.style.display = 'block';
+        return;
+      }
+
+      // Build mailto link
+      const subject = encodeURIComponent(`Portfolio Inquiry — ${service}`);
+      const body = encodeURIComponent(
+        `Name: ${fname} ${document.getElementById('lname').value}\nEmail: ${email}\nService: ${service}\n\n${message}`
+      );
+      window.location.href = `mailto:francisblaise3@gmail.com?subject=${subject}&body=${body}`;
+
+      msg.style.color = 'var(--gold)';
+      msg.textContent = '✓ Opening your email client...';
+      msg.style.display = 'block';
+    }
+
+    // Smooth active nav link highlight
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 200) current = s.getAttribute('id');
+      });
+      navLinks.forEach(a => {
+        a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--gold)' : '';
+      });
+    });
+  </script>
+</body>
+</html>
